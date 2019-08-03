@@ -1,12 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App/App';
-import * as serviceWorker from './serviceWorker';
+import App from './components/App/App.js';
+import registerServiceWorker from './registerServiceWorker';
+// import * as serviceWorker from './serviceWorker';
+// Provider allows us to use redux within our react app
+import { Provider } from 'react-redux';
+// Import saga middleware
+import createSagaMiddleware from 'redux-saga';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import rootSaga from './redux/sagas/index';
+import combinedReducers from './redux/reducers';
+
+// Create sagaMiddleware
+const sagaMiddleware = createSagaMiddleware();
+
+const storeInstance = createStore(
+    combinedReducers,
+    // Add sagaMiddleware to our store
+    applyMiddleware(sagaMiddleware, logger));
+
+// Pass rootSaga into our sagaMiddleware
+sagaMiddleware.run(rootSaga);
+
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
+    document.getElementById('root'));
+registerServiceWorker();
