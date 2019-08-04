@@ -2,11 +2,11 @@
   "name": "spike-stripe-api",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@material-ui/core": "^4.3.0",
     "axios": "^0.19.0",
     "dotenv": "^8.0.0",
-    "nodemon": "^1.19.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
@@ -17,6 +17,9 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.5",
     "stripe": "^7.5.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   },
   "scripts": {
     "start": "node server/server.js",
@@ -34,11 +37,6 @@
       ">0.2%",
       "not dead",
       "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
     ]
   }
 }

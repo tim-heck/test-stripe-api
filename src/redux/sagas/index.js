@@ -9,8 +9,8 @@ function* createSession(action) {
     console.log('in createSession');
     try {
         const response = yield axios.get('/api/checkout');
-        console.log(response);
-        // yield put({type: 'SET_SESSION'}, response);
+        console.log(response.data);
+        yield put({ type: 'SET_SESSION', payload: response.data});
     } catch (err) {
         console.log('error with creating session', err);
     }
