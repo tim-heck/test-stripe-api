@@ -12,7 +12,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <h1>Test Spite API</h1>
+            <h1>Test Stripe API</h1>
           </header>
           <br />
           <Route exact path="/" component={CheckoutBtn} />
