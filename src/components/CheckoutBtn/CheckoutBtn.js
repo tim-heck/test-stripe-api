@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -11,6 +12,7 @@ const styles = theme => ({
 class CheckoutBtn extends Component {
 
     goToCheckout = () => {
+        this.props.dispatch({ type: 'CREATE_SESSION' });
         this.props.history.push('/checkout');
     }
 
@@ -19,10 +21,10 @@ class CheckoutBtn extends Component {
 
         return (
             <Button variant="contained" color="primary" className={classes.button} onClick={this.goToCheckout}>
-                Go to Checkout
+                Go to Cart
             </Button>
         );
     }
 }
 
-export default withStyles(styles)(CheckoutBtn);
+export default withStyles(styles)(connect()(CheckoutBtn));

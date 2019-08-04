@@ -1,28 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-// import StripeCheckout from 'react-stripe-checkout';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit,
+    }
+});
 
 const stripe = window.Stripe("pk_test_7jYMjDzgFwCy7pMi8GaI0iRm00KGSaLtmj");
 console.log(stripe);
 
-const styles = theme => ({
-
-});
-
 class Checkout extends Component {
-
-    state = {
-
-    }
-
-    // handleToken = (token, addresses) => {
-    //     console.log(token, addresses);
-    // }
-
-    handleClick = () => {
-        this.props.dispatch({type: 'CREATE_SESSION'});
-    }
 
     goToCheckout = () => {
         stripe.redirectToCheckout({
@@ -34,26 +24,25 @@ class Checkout extends Component {
             // If `redirectToCheckout` fails due to a browser or network
             // error, display the localized error message to your customer
             // using `result.error.message`.
-            console.log(result);
-            // console.log(result.error.message);
+            console.log(result.error.message);
         });
         
     }
 
     checkSession = () => {
+        const { classes } = this.props;
         if (this.props.reduxStore.checkoutSession.id){
             return (
-                <button onClick={this.goToCheckout}>Go to Checkout</button>
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.goToCheckout}>
+                    Go to Checkout
+                </Button>
             );
         }
     }
 
     render() {
-        // const { classes } = this.props;
         return (
             <>
-                {/* <StripeCheckout stripeKey="pk_test_7jYMjDzgFwCy7pMi8GaI0iRm00KGSaLtmj" token={this.handleToken} /> */}
-                <button onClick={this.handleClick}>Get session</button>
                 {this.checkSession()}
             </>
         );
