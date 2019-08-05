@@ -7,19 +7,25 @@ const STRIPE_API_TEST_SKEY = process.env.STRIPE_API_TEST_SKEY;
 const stripe = require("stripe")(STRIPE_API_TEST_SKEY);
 
 router.post('/', (req, res) => {
-    console.log('req.body:', req.body[0].title);
+    console.log('req.body:', req.body);
+    let cart = [];
+    let cartItem = null;
+    req.body.map(item => {
+        cartItem = {
+            name: item.title,
+            description: item.description,
+            amount: item.price,
+            currency: "usd",
+            quantity: 1,
+            images: [item.image_url]
+        }
+        cart.push(cartItem);
+    })
     stripe.checkout.sessions.create({
         success_url: "http://localhost:3000/#/thank-you",
         cancel_url: "http://localhost:3000/#/checkout",
         payment_method_types: ["card"],
-        line_items: [{
-            name: req.body[0].title,
-            description: req.body[0].description,
-            amount: req.body[0].price,
-            currency: "usd",
-            quantity: 1,
-            images: [req.body[0].image_url]
-        }]
+        line_items: cart
     }, function (err, session) {
         console.log('Made it after post');
         if (err === null) {
