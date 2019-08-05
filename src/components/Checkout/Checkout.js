@@ -10,7 +10,7 @@ const styles = theme => ({
 });
 
 const stripe = window.Stripe("pk_test_7jYMjDzgFwCy7pMi8GaI0iRm00KGSaLtmj");
-console.log(stripe);
+// console.log(stripe);
 
 class Checkout extends Component {
 
@@ -41,7 +41,7 @@ class Checkout extends Component {
     }
 
     render() {
-        console.log('cart:', this.props.reduxStore.cart);
+        // console.log('cart:', this.props.reduxStore.cart);
         return (
             <>
                 <h2>Your Cart</h2>

@@ -38,8 +38,8 @@ class Merch extends Component {
     }
 
     goToCheckout = () => {
-        this.props.dispatch({ type: 'CREATE_SESSION' });
-        this.props.dispatch({ type: 'ADD_TO_CART', payload: this.state.cart });
+        this.props.dispatch({ type: 'CREATE_SESSION', payload: this.state.cart });
+        this.props.dispatch({ type: 'ADD_TO_CART', payload: this.state.cart }); // may not need
         this.props.history.push('/checkout');
     }
 
@@ -52,7 +52,7 @@ class Merch extends Component {
 
     render() {
         const { classes } = this.props;
-        console.log('local cart:', this.state);
+        // console.log('local cart:', this.state);
         return (
             <>
                 <ul>

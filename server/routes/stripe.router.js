@@ -7,16 +7,18 @@ const STRIPE_API_TEST_SKEY = process.env.STRIPE_API_TEST_SKEY;
 const stripe = require("stripe")(STRIPE_API_TEST_SKEY);
 
 router.post('/', (req, res) => {
+    console.log('req.body:', req.body[0].title);
     stripe.checkout.sessions.create({
         success_url: "http://localhost:3000/#/thank-you",
         cancel_url: "http://localhost:3000/#/checkout",
         payment_method_types: ["card"],
         line_items: [{
-            name: "Stay Greasy T-shirt",
-            description: "The greasiest shirt you can own.",
-            amount: 1000,
+            name: req.body[0].title,
+            description: req.body[0].description,
+            amount: req.body[0].price,
             currency: "usd",
-            quantity: 1
+            quantity: 1,
+            images: [req.body[0].image_url]
         }]
     }, function (err, session) {
         console.log('Made it after post');

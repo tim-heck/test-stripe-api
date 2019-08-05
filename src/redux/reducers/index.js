@@ -23,7 +23,7 @@ const cart = (state = [], action) => {
         case 'ADD_TO_CART':
             return action.payload;
         case 'CLEAR_CART':
-            console.log('clear cart:', action.payload);
+            // console.log('clear cart:', action.payload);
             state = action.payload;
             return state;
         default:
