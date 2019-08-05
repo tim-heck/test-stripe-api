@@ -41,8 +41,20 @@ class Checkout extends Component {
     }
 
     render() {
+        console.log('cart:', this.props.reduxStore.cart);
         return (
             <>
+                <h2>Your Cart</h2>
+                <ul>
+                    {this.props.reduxStore.cart.map((item, i) => 
+                        <li key={i}>
+                            <img src={item.image_url} height="150" alt="" />
+                            <h2>{item.title}</h2>
+                            <p>{item.description}</p>
+                            <h4>{item.price_pennies}</h4>
+                        </li>
+                    )}
+                </ul>
                 {this.checkSession()}
             </>
         );

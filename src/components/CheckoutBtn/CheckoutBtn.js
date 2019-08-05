@@ -11,20 +11,38 @@ const styles = theme => ({
 
 class CheckoutBtn extends Component {
 
-    goToCheckout = () => {
-        this.props.dispatch({ type: 'CREATE_SESSION' });
-        this.props.history.push('/checkout');
+    checkCart = () => {
+        const { classes } = this.props;
+        if (this.props.cart.length > 0) {
+            return (
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.props.goToCheckout}>
+                    View Cart
+                </Button>
+            );
+        } else {
+            return (
+                <Button variant="contained" disabled className={classes.button} onClick={this.props.goToCheckout}>
+                    View Cart
+                </Button>
+            );
+        }
     }
 
     render() {
         const { classes } = this.props;
-
         return (
-            <Button variant="contained" color="primary" className={classes.button} onClick={this.goToCheckout}>
-                Go to Cart
-            </Button>
+            <>
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.props.clearCart}>
+                    Clear Cart
+                </Button>
+                {this.checkCart()}
+            </>
         );
     }
 }
 
-export default withStyles(styles)(connect()(CheckoutBtn));
+const stateToProps = (reduxStore) => ({
+    reduxStore
+})
+
+export default withStyles(styles)(connect(stateToProps)(CheckoutBtn));

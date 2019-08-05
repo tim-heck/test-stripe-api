@@ -6,7 +6,7 @@ require('dotenv').config();
 const STRIPE_API_TEST_SKEY = process.env.STRIPE_API_TEST_SKEY;
 const stripe = require("stripe")(STRIPE_API_TEST_SKEY);
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
     stripe.checkout.sessions.create({
         success_url: "http://localhost:3000/#/thank-you",
         cancel_url: "http://localhost:3000/#/checkout",

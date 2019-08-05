@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import { HashRouter as Router, Route} from 'react-router-dom';
 import Checkout from '../Checkout/Checkout';
-import CheckoutBtn from '../CheckoutBtn/CheckoutBtn';
+// import CheckoutBtn from '../CheckoutBtn/CheckoutBtn';
 import ThankYou from '../ThankYou/ThankYou';
+import Merch from '../Merch/Merch';
 
 class App extends Component {
   
@@ -15,7 +16,7 @@ class App extends Component {
             <h1>Test Stripe API</h1>
           </header>
           <br />
-          <Route exact path="/" component={CheckoutBtn} />
+          <Route exact path="/" component={Merch} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/thank-you" component={ThankYou} />
         </div>
