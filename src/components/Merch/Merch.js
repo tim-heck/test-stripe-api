@@ -61,7 +61,7 @@ class Merch extends Component {
                             <img src={item.image_url} alt="" />
                             <h2>{item.title}</h2>
                             <p>{item.description}</p>
-                            <h4>{item.price_pennies}</h4>
+                            <h4>{(item.price_pennies / 100).toFixed(2)}</h4>
                             <Button variant="contained" className={classes.button} onClick={() => this.addToCart(item)}>
                                 Add to Cart
                             </Button>
