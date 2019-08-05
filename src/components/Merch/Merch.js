@@ -14,9 +14,7 @@ const styles = theme => ({
 class Merch extends Component {
 
     state = {
-        cart: [
-            
-        ]
+        cart: []
     };
 
     componentDidMount() {

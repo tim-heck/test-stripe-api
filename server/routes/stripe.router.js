@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
             amount: item.price,
             currency: "usd",
             quantity: 1,
-            images: [item.image_url]
+            // images: [item.image_url]
         }
         cart.push(cartItem);
     })
